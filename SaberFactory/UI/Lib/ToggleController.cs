@@ -27,20 +27,20 @@ namespace SaberFactory.UI.Lib
         {
             RemoveEvent();
             _event = new UnityAction<bool>(action);
-            Toggle.toggle.onValueChanged.AddListener(_event);
+            Toggle.Toggle.onValueChanged.AddListener(_event);
         }
 
         public override void RemoveEvent()
         {
             if (_event != null)
             {
-                Toggle.toggle.onValueChanged.RemoveListener(_event);
+                Toggle.Toggle.onValueChanged.RemoveListener(_event);
             }
         }
 
         public override string GetId()
         {
-            return ExternalComponents.components.First(x => true).Cast<TextMeshProUGUI>().text;
+            return ExternalComponents.Components.First(x => true).Cast<TextMeshProUGUI>().text;
         }
 
         public override void SetValue(object val)

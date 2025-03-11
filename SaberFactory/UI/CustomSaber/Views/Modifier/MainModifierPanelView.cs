@@ -83,8 +83,8 @@ namespace SaberFactory.UI.CustomSaber.Views.Modifiers
 #pragma warning disable CS0162 // Unreachable code detected
             _modifyableComponentManager = null;
 
-            _componentList.data = new List<CustomListTableData.CustomCellInfo>();
-            _componentList.tableView.ReloadData();
+            _componentList.Data = new List<CustomListTableData.CustomCellInfo>();
+            _componentList.TableView.ReloadData();
             ClearCurrentView();
             GizmoDrawer.Deactivate();
 #pragma warning restore CS0162 // Unreachable code detected
@@ -100,12 +100,12 @@ namespace SaberFactory.UI.CustomSaber.Views.Modifiers
                 list.Add(new CustomListTableData.CustomCellInfo(mod.Name, mod.TypeName));
             }
             
-            _componentList.data = list;
-            _componentList.tableView.ReloadData();
+            _componentList.Data = list;
+            _componentList.TableView.ReloadData();
             
             if (_items.Count > 0)
             {
-                _componentList.tableView.SelectCellWithIdx(0, true);
+                _componentList.TableView.SelectCellWithIdx(0, true);
             }
         }
 

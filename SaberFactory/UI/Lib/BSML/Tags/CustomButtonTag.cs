@@ -2,7 +2,7 @@
 using BeatSaberMarkupLanguage.Components;
 using BeatSaberMarkupLanguage.Tags;
 using HMUI;
-using Polyglot;
+using BGLib.Polyglot;
 using SaberFactory.Helpers;
 using TMPro;
 using UnityEngine;
@@ -38,7 +38,7 @@ namespace SaberFactory.UI.Lib.BSML.Tags
 
             var textMesh = button.GetComponentInChildren<TextMeshProUGUI>();
             textMesh.richText = true;
-            externalComponents.components.Add(textMesh);
+            externalComponents.Components.Add(textMesh);
 
             Object.Destroy(button.transform.Find("Content").GetComponent<LayoutElement>());
 
@@ -46,7 +46,7 @@ namespace SaberFactory.UI.Lib.BSML.Tags
 
             button.gameObject.GetComponent<ButtonStaticAnimations>().TryDestroy();
             var buttonStateColors = button.gameObject.AddComponent<ButtonStateColors>();
-            externalComponents.components.Add(buttonStateColors);
+            externalComponents.Components.Add(buttonStateColors);
             buttonStateColors.Image = bgImage;
             buttonStateColors.NormalColor = _defaultNormalColor;
             buttonStateColors.HoveredColor = _defaultHoveredColor;
@@ -56,7 +56,7 @@ namespace SaberFactory.UI.Lib.BSML.Tags
                 buttonStateColors.SelectionDidChange;
 
             var buttonImageController = button.gameObject.AddComponent<ButtonImageController>();
-            externalComponents.components.Add(buttonImageController);
+            externalComponents.Components.Add(buttonImageController);
             buttonImageController.BackgroundImage = bgImage;
             buttonImageController.LineImage = button.transform.Find("Underline").gameObject.GetComponent<ImageView>();
             buttonImageController.ShowLine(false);
@@ -72,7 +72,7 @@ namespace SaberFactory.UI.Lib.BSML.Tags
             var stackLayoutGroup = button.GetComponentInChildren<LayoutGroup>();
             if (stackLayoutGroup != null)
             {
-                externalComponents.components.Add(stackLayoutGroup);
+                externalComponents.Components.Add(stackLayoutGroup);
             }
 
             if (!button.gameObject.activeSelf)

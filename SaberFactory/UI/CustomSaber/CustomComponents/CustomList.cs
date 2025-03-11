@@ -145,13 +145,13 @@ namespace SaberFactory.UI.CustomSaber.CustomComponents
 
         private void SetBgColor(Color color)
         {
-            _layoutElement.gameObject.GetComponent<Backgroundable>().background.color = color;
+            _layoutElement.gameObject.GetComponent<Backgroundable>().Background.color = color;
         }
 
         [UIAction("#post-parse")]
         private void Setup()
         {
-            _list.TableView.GetField<ScrollView, TableView>("_scrollView").SetField("_platformHelper", _platformHelper);
+            _list.TableView._scrollView.SetField("_platformHelper", _platformHelper);
         }
 
         [UIAction("item-selected")]

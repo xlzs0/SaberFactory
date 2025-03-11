@@ -33,7 +33,7 @@ namespace SaberFactory.UI.Lib
             SubViewSwitcher = new SubViewSwitcher();
         }
 
-        public override async void DidActivate(bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling)
+        protected override async void DidActivate(bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling)
         {
             if (firstActivation)
             {
@@ -44,7 +44,7 @@ namespace SaberFactory.UI.Lib
             SubViewSwitcher.NotifyDidOpen();
         }
 
-        public override void DidDeactivate(bool removedFromHierarchy, bool screenSystemDisabling)
+        protected override void DidDeactivate(bool removedFromHierarchy, bool screenSystemDisabling)
         {
             SubViewSwitcher.NotifyDidClose();
         }

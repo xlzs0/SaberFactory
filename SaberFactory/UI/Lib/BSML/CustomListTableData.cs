@@ -176,7 +176,7 @@ namespace SaberFactory.UI.Lib.BSML
             return null;
         }
 
-        public float CellSize()
+        public float CellSize(int _)
         {
             return cellSize;
         }

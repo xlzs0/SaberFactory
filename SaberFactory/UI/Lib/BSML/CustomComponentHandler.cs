@@ -25,7 +25,6 @@ namespace SaberFactory.UI.Lib.BSML
     {
         public const string ComponentPrefix = "sui";
 
-        public static bool Registered { get; private set; }
         private readonly SiraLog _logger;
 
         private CustomComponentHandler(
@@ -36,8 +35,8 @@ namespace SaberFactory.UI.Lib.BSML
             _logger = logger;
             _popupFactory = popupFactory;
             _customUiComponentFactory = customUiComponentFactory;
-            _bsmlParser = BSMLParser.instance;
-            RegisterAll(BSMLParser.instance);
+            _bsmlParser = BSMLParser.Instance;
+            RegisterAll(BSMLParser.Instance);
         }
 
         public void Initialize()
@@ -45,11 +44,6 @@ namespace SaberFactory.UI.Lib.BSML
 
         private void RegisterAll(BSMLParser parser)
         {
-            if (Registered)
-            {
-                return;
-            }
-
             foreach (var tag in InstantiateOfType<BSMLTag>())
             {
                 parser.RegisterTag(tag);
@@ -72,8 +66,6 @@ namespace SaberFactory.UI.Lib.BSML
 #endif
 
             _logger.Info("Registered Custom Components");
-
-            Registered = true;
         }
         
         [Conditional("DEBUG")]
@@ -121,7 +113,7 @@ namespace SaberFactory.UI.Lib.BSML
                             var node = tag.CreateObject(parent);
                             foreach (var typeHandler in typeHandlers.Where(x => x.GetType().Assembly == thisAsm))
                             {
-                                var type = typeHandler.GetType().GetCustomAttribute<ComponentHandler>().type;
+                                var type = typeHandler.GetType().GetCustomAttribute<ComponentHandler>().Type;
                                 if (parser.InvokeMethod<Component, BSMLParser>("GetExternalComponent", node, type) != null)
                                 {
                                     foreach (var attrAliases in typeHandler.Props.Values)
@@ -168,7 +160,7 @@ namespace SaberFactory.UI.Lib.BSML
                     var currentNode = tag.CreateObject(parent);
                     foreach (var typeHandler in typeHandlers)
                     {
-                        var type = typeHandler.GetType().GetCustomAttribute<ComponentHandler>().type;
+                        var type = typeHandler.GetType().GetCustomAttribute<ComponentHandler>().Type;
                         if (parser.InvokeMethod<Component, BSMLParser>("GetExternalComponent", currentNode, type) != null)
                         {
                             foreach (var attrAliases in typeHandler.Props.Values)

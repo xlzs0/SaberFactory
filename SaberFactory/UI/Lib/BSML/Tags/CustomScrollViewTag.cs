@@ -21,8 +21,8 @@ namespace SaberFactory.UI.Lib.BSML.Tags
         {
             var textScrollView =
                 Object.Instantiate(
-                    Resources.FindObjectsOfTypeAll<ReleaseInfoViewController>().First()
-                        .GetField<TextPageScrollView, ReleaseInfoViewController>("_textPageScrollView"), parent);
+                    Resources.FindObjectsOfTypeAll<LicensesDisplayViewController>().First()
+                        .GetField<TextPageScrollView, LicensesDisplayViewController>("_textPageScrollView"), parent);
             textScrollView.name = "BSMLScrollView";
             var pageUpButton = textScrollView.GetField<Button, ScrollView>("_pageUpButton");
             var pageDownButton = textScrollView.GetField<Button, ScrollView>("_pageDownButton");
@@ -63,7 +63,7 @@ namespace SaberFactory.UI.Lib.BSML.Tags
             var rectTransform = parentObj.transform.AsRectTransform();
 
             parentObj.AddComponent<LayoutElement>();
-            parentObj.AddComponent<ScrollViewContent>().scrollView = scrollView;
+            parentObj.AddComponent<ScrollViewContent>().ScrollView = scrollView;
 
             var child = new GameObject();
             child.name = "BSMLScrollViewContentContainer";
@@ -79,8 +79,8 @@ namespace SaberFactory.UI.Lib.BSML.Tags
             child.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
             child.AddComponent<LayoutElement>();
             var externalComponents = child.AddComponent<ExternalComponents>();
-            externalComponents.components.Add(scrollView);
-            externalComponents.components.Add(scrollView.transform);
+            externalComponents.Components.Add(scrollView);
+            externalComponents.Components.Add(scrollView.transform);
 
             child.transform.AsRectTransform().sizeDelta = new Vector2(0, -1);
 

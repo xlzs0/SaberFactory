@@ -35,19 +35,19 @@ namespace SaberFactory.UI.Lib.BSML
 
         public static void SetGradient(Backgroundable background, string usingGradient)
         {
-            (background.background as ImageView).SetField("_gradient", bool.Parse(usingGradient));
+            (background.Background as ImageView).SetField("_gradient", bool.Parse(usingGradient));
         }
 
         public static void SetFill(Backgroundable background, string usingFill)
         {
-            background.background.fillCenter = bool.Parse(usingFill);
+            background.Background.fillCenter = bool.Parse(usingFill);
         }
 
         private void SetColor0(Backgroundable background, string colorStr)
         {
             ColorUtility.TryParseHtmlString(colorStr, out var color);
 
-            var iv = background.background as ImageView;
+            var iv = background.Background as ImageView;
             iv.SetField("_color0", color);
             iv.SetVerticesDirty();
         }
@@ -56,14 +56,14 @@ namespace SaberFactory.UI.Lib.BSML
         {
             ColorUtility.TryParseHtmlString(colorStr, out var color);
 
-            var iv = background.background as ImageView;
+            var iv = background.Background as ImageView;
             iv.SetField("_color1", color);
             iv.SetVerticesDirty();
         }
 
         private void SetSkew(Backgroundable background, string skew)
         {
-            var iv = background.background as ImageView;
+            var iv = background.Background as ImageView;
             iv.SetField("_skew", float.Parse(skew));
             iv.SetVerticesDirty();
         }

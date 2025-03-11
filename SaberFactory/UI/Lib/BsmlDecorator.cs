@@ -36,7 +36,7 @@ namespace SaberFactory.UI.Lib
 
         private readonly Dictionary<string, string> _templates = new Dictionary<string, string>();
 
-        private readonly Dictionary<string, XmlNode> _bsmlCache = new Dictionary<string, XmlNode>();
+        private readonly Dictionary<string, XmlDocument> _bsmlCache = new Dictionary<string, XmlDocument>();
         private readonly XmlReaderSettings _readerSettings = new XmlReaderSettings { IgnoreComments = true };
 
         public void AddTemplateHandler(string name, Func<BsmlDecorator, string[], string> action)
@@ -75,7 +75,7 @@ namespace SaberFactory.UI.Lib
                 _bsmlCache.Add(resourceName, node);
             }
 
-            return BSMLParser.instance.Parse(node, parent, host);
+            return BSMLParser.Instance.Parse(node.OuterXml, parent, host);
         }
 
         public BSMLParserParams ParseFromResource(string resourceName, GameObject parent, object host)
@@ -92,13 +92,13 @@ namespace SaberFactory.UI.Lib
                 _bsmlCache.Add(resourceName, node);
             }
 
-            return BSMLParser.instance.Parse(node, parent, host);
+            return BSMLParser.Instance.Parse(node.OuterXml, parent, host);
         }
 
         public BSMLParserParams ParseFromString(string content, GameObject parent, object host)
         {
             content = Process(content);
-            return BSMLParser.instance.Parse(content, parent, host);
+            return BSMLParser.Instance.Parse(content, parent, host);
         }
         
         public void ProcessDoc(XmlDocument doc)
